@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>1º Hackathon de Informática da Escola</title>
+</head>
+<body>
+
+    <h1>Inscrição - 1º Hackathon de Informática da Escola</h1>
+
+    <form>
+
+        <!-- BLOCO 1 -->
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+
+            <label>Nome Completo:</label>
+            <input type="text" name="nome"><br><br>
+
+            <label>E-mail:</label>
+            <input type="email" name="email"><br><br>
+
+            <label>Senha para o sistema:</label>
+            <input type="password" name="senha"><br><br>
+
+            <label>Data de Nascimento:</label>
+            <input type="date" name="data_nascimento"><br><br>
+        </fieldset>
+
+        <br>
+
+        <!-- BLOCO 2 -->
+        <fieldset>
+            <legend>Perfil Técnico</legend>
+
+            <p>Linguagens de interesse:</p>
+            <input type="checkbox" name="linguagem" value="HTML"> HTML
+            <input type="checkbox" name="linguagem" value="CSS"> CSS
+            <input type="checkbox" name="linguagem" value="JavaScript"> JavaScript
+            <input type="checkbox" name="linguagem" value="Python"> Python
+
+            <br><br>
+
+            <p>Nível de experiência:</p>
+            <input type="radio" name="nivel" value="Iniciante"> Iniciante
+            <input type="radio" name="nivel" value="Intermediario"> Intermediário
+            <input type="radio" name="nivel" value="Avancado"> Avançado
+
+            <br><br>
+
+            <label>Envie seu currículo ou portfólio:</label>
+            <input type="file" name="arquivo">
+        </fieldset>
+
+        <br>
+
+        <!-- BLOCO 3 -->
+        <fieldset>
+            <legend>Detalhes do Evento</legend>
+
+            <label>Tamanho da camiseta:</label>
+            <select name="camiseta">
+                <option value="P">P</option>
+                <option value="M">M</option>
+                <option value="G">G</option>
+                <option value="GG">GG</option>
+            </select>
+
+            <br><br>
+
+            <label>Carta de motivação:</label><br>
+            <textarea name="motivacao" rows="5" cols="40"></textarea>
+        </fieldset>
+
+        <br>
+
+        <button type="submit">Enviar Inscrição</button>
+
+    </form>
+
+</body>
+</html>
