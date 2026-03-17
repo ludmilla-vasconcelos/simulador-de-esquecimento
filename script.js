@@ -1,31 +1,50 @@
-// 1. Selecionamos os elementos que vamos usar
-const form = document.getElementById('form-materia');
-const lista = document.getElementById('lista-materias');
+// 1. Selecionamos os elementos do seu HTML (Apenas uma vez!)
+const formulario = document.querySelector('#form-materia');
+const campoMateria = document.querySelector('#materia');
+const campoData = document.querySelector('#data'); // Pegando a data também!
+const listaExibicao = document.querySelector('#lista-materias');
 
-// 2. Ouvimos o evento de "submit" (enviar) do formulário
-form.addEventListener('submit', function(event) {
-    // Impede a página de recarregar (comportamento padrão do formulário)
-    event.preventDefault();
+// 2. Criamos a "escuta" do evento (quando clica em Salvar)
+formulario.addEventListener('submit', function(evento) {
+    
+    // Impede a página de recarregar sozinha
+    evento.preventDefault();
 
-    // 3. Pegamos os valores digitados nos inputs
-    const materia = document.getElementById('materia').value;
-    const dataestudo = document.getElementById('data').value;
+    // 3. Pegamos o que foi digitado nos campos
+    const nomeDaMateria = campoMateria.value;
+    const dataEstudo = campoData.value;
 
-    // 4. Criamos um "card" (uma div) para exibir a matéria
+    // 4. Cria um "Card" (uma div) para ficar bonito na tela
     const novoCard = document.createElement('div');
-    novoCard.classList.add('card-estudo'); // Adicionamos uma classe para estilizar no CSS depois
-
-    // 5. Definimos o conteúdo do card (usando Template Strings)
+    
+    // Adicionamos o conteúdo dentro desse card
     novoCard.innerHTML = `
-        <p><strong>Matéria:</strong> ${materia}</p>
-        <p><strong>Estudado em:</strong> ${dataestudo}</p>
-        <p><em>💡 Dica: Revise isso amanhã!</em></p>
-        <hr>
+        <div style="background-color: #f0f8ff; padding: 10px; margin-top: 10px; border-radius: 8px; border-left: 5px solid #007bff;">
+            <p><strong>📚 Matéria:</strong> ${nomeDaMateria}</p>
+            <p><strong>📅 Data:</strong> ${dataEstudo}</p>
+            <p><small><em>Dica: Revise em 24 horas!</em></small></p>
+        </div>
     `;
+    
+    // 5. Colocamos o card novo dentro da nossa lista no HTML
+    listaExibicao.appendChild(novoCard);
 
-    // 6. Colocamos o novo card dentro da nossa lista no HTML
-    lista.appendChild(novoCard);
+    // 6. Limpamos o formulário para a próxima digitação
+    formulario.reset();
+});
 
-    // 7. Limpamos o formulário para a próxima matéria
-    form.reset();
+// Teste de conexão (aparecerá no F12 -> Console)
+console.log("O simulador de estudos está ativo! Feito por Lucas e Ludmilla.");
+// SEGUNDA INTERAÇÃO: Mudar cor da dica ao passar o mouse
+const dica = document.querySelector('article');
+
+// Quando o mouse entra na área da dica
+dica.addEventListener('mouseenter', function() {
+    dica.style.backgroundColor = '#fff3cd'; // Fica amarelinho
+    dica.style.cursor = 'pointer';
+});
+
+// Quando o mouse sai da área da dica
+dica.addEventListener('mouseleave', function() {
+    dica.style.backgroundColor = 'transparent'; // Volta ao normal
 });
