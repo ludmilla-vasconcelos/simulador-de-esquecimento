@@ -28,16 +28,16 @@
     <p>Preencha abaixo para eu te ajudar a não esquecer!</p>
 
    
- <form id="form-materia">
+<form id="form-materia">
     <label for="materia">Nome da matéria:</label>
     <input type="text" id="materia" placeholder="Ex: Matemática" required>
 
-    <label for="data">Que dia você estudou?</label>
-    <input type="date" id="data" required>
+    <label for="data-caos">Que dia você estudou? (Deslize com cuidado!)</label>
+    <input type="range" id="data-caos" min="-2208988800000" max="1767225600000" step="1" style="width: 100%;">
+    <p id="data-display" style="color: red; font-weight: bold;">Data: Selecione no slider</p>
 
-    <button type="submit">Salvar Matéria</button>
+    <button type="submit" id="btn-fugitivo">Salvar Matéria</button>
 </form>
-
 <div id="lista-materias"></div>
 
 </section>

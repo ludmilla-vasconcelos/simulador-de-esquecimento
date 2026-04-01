@@ -31,3 +31,24 @@ async function buscarTodos() {
         request.onsuccess = () => resolve(request.result);
     });
 }
+// db.js
+let db;
+// Abre o banco de dados "SimuladorEsquecimento"
+const request = indexedDB.open("SimuladorEsquecimento", 1);
+
+// Se for a primeira vez ou mudar a versão, cria a "tabela"
+request.onupgradeneeded = (event) => {
+    db = event.target.result;
+    if (!db.objectStoreNames.contains("materias")) {
+        db.createObjectStore("materias", { keyPath: "id", autoIncrement: true });
+    }
+};
+
+request.onsuccess = (event) => {
+    db = event.target.result;
+    console.log("Banco de dados IndexedDB conectado com sucesso!");
+};
+
+request.onerror = (event) => {
+    console.error("Erro no IndexedDB:", event.target.errorCode);
+};

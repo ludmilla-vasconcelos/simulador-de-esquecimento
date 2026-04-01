@@ -48,3 +48,30 @@ dica.addEventListener('mouseenter', function() {
 dica.addEventListener('mouseleave', function() {
     dica.style.backgroundColor = 'transparent'; // Volta ao normal
 });
+// 1. Criamos uma variável global para o banco
+let db;
+
+// 2. Solicitamos a abertura do banco chamado "MeuBancoDoCaos"
+const request = indexedDB.open("MeuBancoDoCaos", 1);
+
+// 3. Este evento só roda se o banco for NOVO ou a versão mudar
+request.onupgradeneeded = function(event) {
+    db = event.target.result;
+    
+    // Criamos uma "tabela" chamada 'usuarios'
+    // O 'keyPath: id' é como o CPF de cada registro (único)
+    const store = db.createObjectStore("usuarios", { keyPath: "id", autoIncrement: true });
+    
+    console.log("Tabela criada com sucesso!");
+};
+
+// 4. Este evento roda se o banco abrir corretamente
+request.onsuccess = function(event) {
+    db = event.target.result;
+    console.log("Conectado ao IndexedDB!");
+};
+
+// 5. Caso ocorra algum erro
+request.onerror = function(event) {
+    console.error("Erro ao abrir o banco:", event.target.errorCode);
+};

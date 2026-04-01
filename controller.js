@@ -1,36 +1,67 @@
-// controller.js - Responsável pela lógica da tela
-const form = document.getElementById("form-materia");
-const listaDiv = document.getElementById("lista-materias");
+// Espera a página carregar 100% para não dar erro de "null"
+window.addEventListener('load', () => {
 
-// Função para mostrar as matérias na tela
-async function renderizarLista() {
-    const materias = await buscarTodos(); // Busca do db.js
-    listaDiv.innerHTML = ""; // Limpa a lista antes de mostrar
+    const slider = document.getElementById('data-caos');
+    const display = document.getElementById('data-display');
+    const btn = document.getElementById('btn-fugitivo');
+    const form = document.getElementById('form-materia');
 
-    materias.forEach(item => {
-        const itemHtml = `
-            <div style="background: #eee; margin: 5px; padding: 10px; border-radius: 5px;">
-                <strong>Livro/Matéria:</strong> ${item.materia} <br>
-                <strong>Data:</strong> ${item.data}
-            </div>
-        `;
-        listaDiv.innerHTML += itemHtml;
-    });
-}
+    let dataFinal = "";
 
-// Evento de salvar o formulário
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // 1. Slider do Caos
+    if (slider) {
+        slider.addEventListener('input', () => {
+            const data = new Date(parseInt(slider.value));
+            dataFinal = data.toLocaleDateString('pt-BR');
+            display.innerText = `Data Selecionada: ${dataFinal}`;
+        });
+    }
 
-    const dados = {
-        materia: document.getElementById("materia").value,
-        data: document.getElementById("data").value
-    };
+    // 2. Botão Fugitivo
+    if (btn) {
+        btn.addEventListener('mouseover', () => {
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 50);
+            
+            btn.style.position = "fixed";
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
+            btn.style.zIndex = "9999"; // Garante que ele fique por cima de tudo
+        });
+    }
 
-    await salvarNoBanco(dados); // Salva no db.js
-    form.reset();
-    renderizarLista(); // Atualiza a tela
+    // 3. Salvar no IndexedDB
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const materiaNome = document.getElementById('materia').value;
+
+            // Se o banco ainda não conectou, avisamos o usuário
+            if (typeof db === 'undefined' || !db) {
+                alert("O banco de dados ainda está iniciando. Tente novamente em 2 segundos.");
+                return;
+            }
+
+            const transacao = db.transaction(["materias"], "readwrite");
+            const store = transacao.objectStore("materias");
+
+            const novaMateria = {
+                nome: materiaNome,
+                data: dataFinal,
+                timestamp: new Date()
+            };
+
+            const pedido = store.add(novaMateria);
+
+            pedido.onsuccess = () => {
+                alert("VITÓRIA! Você salvou: " + materiaNome);
+                location.reload();
+            };
+            
+            pedido.onerror = () => {
+                console.error("Erro ao salvar no banco.");
+            };
+        });
+    }
 });
-
-// Mostra os dados assim que abrir a página
-window.onload = renderizarLista;
