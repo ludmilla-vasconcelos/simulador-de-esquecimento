@@ -1,23 +1,34 @@
-/* --- CONFIGURAÇÕES GERAIS --- */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* --- Configurações Globais --- */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
-    color: #333;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* --- CABEÇALHO E NAVEGAÇÃO --- */
+body {
+    background-color: #f4f7f9;
+    color: #333;
+    line-height: 1.6;
+    padding-bottom: 80px;
+}
+
+/* --- Cabeçalho e Navegação --- */
 header {
-    background-color: #2c3e50;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
     color: white;
-    padding: 20px 0;
+    padding: 25px 0;
     text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 header h1 {
+    font-size: 2rem;
     margin-bottom: 15px;
+    letter-spacing: 1px;
 }
 
 nav ul {
@@ -25,122 +36,210 @@ nav ul {
     display: flex;
     justify-content: center;
     gap: 20px;
-    padding: 0;
-    margin: 0;
 }
 
 nav a {
-    color: white;
     text-decoration: none;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 5px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 25px;
     transition: all 0.3s ease;
 }
 
 nav a:hover {
-    background-color: #f1c40f;
-    color: #2c3e50;
+    background-color: rgba(255,255,255,0.2);
+    color: white;
 }
 
-/* --- CONTEÚDO PRINCIPAL --- */
+/* --- Layout Principal --- */
 main {
-    max-width: 800px; /* Centraliza o conteúdo e não deixa espalhar muito */
-    margin: 0 auto;
-    padding: 30px 20px;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
 section {
-    background-color: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
 }
 
-h2, h3 {
-    color: #2c3e50;
-    margin-top: 0;
+h2 {
+    color: #0056b3;
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    border-bottom: 2px solid #f0f4f8;
+    padding-bottom: 10px;
 }
 
-/* --- FORMULÁRIO --- */
-form {
+/* --- Formulário --- */
+#form-materia {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-bottom: 25px;
+    gap: 18px;
 }
 
-label {
-    font-weight: bold;
-    font-size: 14px;
+#form-materia label {
+    font-weight: 700;
+    color: #444;
+    font-size: 0.95rem;
 }
 
-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+#form-materia input, #form-materia textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e1e8ed;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s;
 }
 
-button {
-    background-color: #3498db;
+#form-materia input:focus, #form-materia textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0,123,255,0.1);
+}
+
+#btn-salvar {
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 12px;
-    border-radius: 5px;
-    font-weight: bold;
+    padding: 16px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: background 0.3s;
-    font-size: 16px;
+    transition: 0.3s;
+    margin-top: 10px;
 }
 
-button:hover {
-    background-color: #2980b9;
+#btn-salvar:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
-/* --- ESTILO DOS CARDS (GERADOS PELO JS) --- */
+/* --- Estilização dos Cards (Minhas Matérias) --- */
 #lista-materias {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
-.card-estudo {
-    background-color: #fdfdfd;
-    padding: 15px;
+.card-materia {
+    background: white;
+    border: none;
+    border-left: 8px solid #007bff;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.card-materia:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-materia small {
+    color: #007bff;
+    background: #e7f3ff;
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
     margin-bottom: 15px;
-    border-left: 6px solid #3498db; /* Faixa azul lateral */
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    animation: fadeIn 0.5s ease; /* Efeito suave ao aparecer */
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.card-materia h3 {
+    color: #222;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
 }
 
-.card-estudo p {
-    margin: 8px 0;
-    line-height: 1.4;
+.card-materia h4 {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
 }
 
-.card-estudo strong {
-    color: #2c3e50;
-}
-
-/* --- ARTIGOS E DICAS --- */
-article {
-    margin-top: 30px;
+.card-materia p {
+    color: #666;
+    background: #f9fbfd;
     padding: 15px;
-    background-color: #e8f4fd;
-    border-radius: 8px;
-    border: 1px dashed #3498db;
+    border-radius: 10px;
+    border: 1px dashed #d1e1f0;
+    white-space: pre-wrap;
 }
 
-/* --- RODAPÉ --- */
+/* --- Aba Sobre --- */
+.sobre-box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 15px;
+    border: 1px solid #e1e8ed;
+}
+
+.sobre-box h3 {
+    color: #007bff;
+    margin: 20px 0 10px;
+}
+
+/* --- Rodapé --- */
 footer {
-    background-color: #2c3e50;
-    color: white;
+    background-color: #222;
+    color: #999;
     text-align: center;
     padding: 20px;
-    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}/* --- Ajuste Fino dos Cards (Minhas Matérias) --- */
+.card-materia {
+    background: white;
+    border-left: 6px solid #007bff;
+    padding: 18px; /* Reduzi um pouco o preenchimento */
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.card-materia small {
+    color: #007bff;
+    background: #e7f3ff;
+    padding: 3px 10px;
+    border-radius: 50px;
+    font-size: 0.7rem; /* Tamanho normal/pequeno para data */
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.card-materia h3 {
+    color: #222;
+    font-size: 1.1rem; /* Tamanho normal para o nome da matéria */
+    margin: 5px 0;
+    text-transform: uppercase;
+}
+
+.card-materia h4 {
+    color: #444;
+    font-size: 0.95rem; /* Tamanho padrão para o título */
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.card-materia p {
+    color: #555;
+    background: #fdfdfd;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    font-size: 0.9rem; /* Tamanho confortável para leitura */
+    line-height: 1.4;
+    white-space: pre-wrap;
 }

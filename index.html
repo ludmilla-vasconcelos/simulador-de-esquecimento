@@ -6,53 +6,72 @@
     <title>Simulador de Esquecimento A</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
     <h1>Simulador de Esquecimento "A"</h1>
-
     <nav>
         <ul>
-            <li><a href="#">Início</a></li>
-            <li><a href="#">Minhas Matérias</a></li>
-            <li><a href="#">Sobre</a></li>
+            <li><a href="#" id="link-inicio">Início</a></li>
+            <li><a href="#" id="link-materias">Minhas Matérias</a></li>
+            <li><a href="#" id="link-sobre">Sobre</a></li>
         </ul>
     </nav>
 </header>
 
 <main>
+    <section id="aba-cadastro">
+        <h2>O que você estudou hoje?</h2>
+        <p>Preencha abaixo para eu te ajudar a não esquecer!</p>
 
-<section>
-    <h2>O que você estudou hoje?</h2>
-    <p>Preencha abaixo para eu te ajudar a não esquecer!</p>
+        <form id="form-materia">
+            <label for="materia">Nome da matéria:</label>
+            <input type="text" id="materia" placeholder="Ex: Matemática" required>
 
-   
-<form id="form-materia">
-    <label for="materia">Nome da matéria:</label>
-    <input type="text" id="materia" placeholder="Ex: Matemática" required>
+            <label for="titulo-conteudo">Título do que estudou:</label>
+            <input type="text" id="titulo-conteudo" placeholder="Ex: Equações de 2º grau" required>
 
-    <label for="data-caos">Que dia você estudou? (Deslize com cuidado!)</label>
-    <input type="range" id="data-caos" min="-2208988800000" max="1767225600000" step="1" style="width: 100%;">
-    <p id="data-display" style="color: red; font-weight: bold;">Data: Selecione no slider</p>
+            <label for="resumo-materia">Resumo da matéria:</label>
+            <textarea id="resumo-materia" rows="5" placeholder="Descreva os pontos principais..." required></textarea>
 
-    <button type="submit" id="btn-fugitivo">Salvar Matéria</button>
-</form>
-<div id="lista-materias"></div>
+            <label for="data-limpa">Que dia você estudou?</label>
+            <input type="date" id="data-limpa" required>
 
-</section>
+            <button type="submit" id="btn-salvar">Salvar Matéria</button>
+        </form>
+    </section>
 
-<hr>
+    <section id="aba-lista" style="display: none;">
+        <h2>Minhas Matérias Salvas</h2>
+        <p>Ordenadas do estudo mais recente para o mais antigo:</p>
+        <div id="lista-materias"></div>
+    </section>
 
-<article>
-    <h3>💡 Dica do Especialista</h3>
-    <p>Você sabia? Se você revisar o conteúdo em 24 horas, você recupera quase 100% do que aprendeu!</p>
-</article>
+    <section id="aba-sobre" style="display: none;">
+        <h2>Sobre o Projeto</h2>
+        <p>O <strong>Simulador de Esquecimento "A"</strong> é o seu diário inteligente de estudos.</p>
+        
+        <div class="sobre-box">
+            <h3>🎯 O Propósito</h3>
+            <p>Este site foi criado para ajudar você a manter o controle sobre o que aprende. Muitas vezes estudamos algo e esquecemos em poucos dias; aqui, você registra os pontos principais para saber exatamente o que revisitar.</p>
+            
+            <h3>📅 Organização por Tempo</h3>
+            <p>O sistema organiza automaticamente suas matérias das mais recentes para as mais antigas. Assim, você sempre terá no topo da lista o que acabou de estudar, facilitando a revisão rápida no dia seguinte.</p>
+        </div>
+        
+        <p style="margin-top:20px; text-align:center;">Criado por Ludmilla e Lucas - 2026</p>
+    </section>
 
+    <hr>
+
+    <article id="dica-especialista">
+        <h3>💡 Dica do Especialista</h3>
+        <p>Se você revisar o conteúdo em 24 horas, você recupera quase 100% do que aprendeu!</p>
+    </article>
 </main>
 
 <footer>
-    <p>Feito com carinho por ludmilla e lucas - Projeto de Estudos 2026</p>
+    <p>Projeto de Estudos - 2026</p>
 </footer>
 
 <script src="db.js"></script>
