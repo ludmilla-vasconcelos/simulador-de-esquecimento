@@ -52,6 +52,11 @@ nav a:hover {
     color: white;
 }
 
+nav a.nav-ativo {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
 /* --- Layout Principal --- */
 main {
     max-width: 850px;
@@ -121,59 +126,307 @@ h2 {
     transform: translateY(-2px);
 }
 
-/* --- Estilização dos Cards (Minhas Matérias) --- */
+/* --- Lista de Matérias --- */
 #lista-materias {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
+.vazio {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 40px 0;
+}
+
+/* Legenda de cores */
+.legenda-cores {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.legenda-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.legenda-cor {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* --- Cards das Matérias --- */
 .card-materia {
     background: white;
-    border: none;
-    border-left: 8px solid #007bff;
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+    border-left: 6px solid #007bff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     transition: all 0.3s ease;
 }
 
 .card-materia:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Status por cor (Curva de Ebbinghaus) */
+.card-materia.status-verde {
+    border-left-color: #28a745;
+}
+
+.card-materia.status-amarelo {
+    border-left-color: #ffc107;
+}
+
+.card-materia.status-vermelho {
+    border-left-color: #dc3545;
+}
+
+.card-materia.status-dominado {
+    border-left-color: #6f42c1;
+}
+
+/* Card header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
 }
 
 .card-materia small {
     color: #007bff;
     background: #e7f3ff;
     display: inline-block;
-    padding: 5px 15px;
+    padding: 4px 12px;
     border-radius: 50px;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    margin-bottom: 15px;
+}
+
+/* Badges de status */
+.badge-status {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.badge-verde {
+    background: #d4edda;
+    color: #155724;
+}
+
+.badge-amarelo {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.badge-vermelho {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.badge-dominado {
+    background: #e8dff5;
+    color: #4a235a;
 }
 
 .card-materia h3 {
     color: #222;
-    font-size: 1.5rem;
-    margin-bottom: 5px;
+    font-size: 1.15rem;
+    margin: 6px 0;
     text-transform: uppercase;
 }
 
 .card-materia h4 {
     color: #555;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.card-materia p {
-    color: #666;
+.card-materia .resumo-texto {
+    color: #555;
     background: #f9fbfd;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px dashed #d1e1f0;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    font-size: 0.9rem;
+    line-height: 1.5;
     white-space: pre-wrap;
+    margin-bottom: 12px;
+}
+
+/* --- Barra de Progresso --- */
+.barra-progresso {
+    margin: 12px 0;
+}
+
+.progresso-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.progresso-track {
+    width: 100%;
+    height: 8px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progresso-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #28a745, #007bff);
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.etapas {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+}
+
+.etapa {
+    flex: 1;
+    text-align: center;
+    padding: 4px 0;
+    font-size: 0.72rem;
+    font-weight: 700;
+    border-radius: 6px;
+}
+
+.etapa-concluida {
+    background: #d4edda;
+    color: #155724;
+}
+
+.etapa-pendente {
+    background: #e9ecef;
+    color: #999;
+}
+
+/* Próxima revisão */
+.proxima-revisao {
+    font-size: 0.88rem;
+    color: #444;
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    background: #f0f8ff;
+    border-radius: 8px;
+    border-left: 3px solid #007bff;
+}
+
+/* --- Botões de Ação --- */
+.card-acoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.btn-revisao {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-revisao:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.btn-deletar {
+    background-color: transparent;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-deletar:hover {
+    background-color: #dc3545;
+    color: white;
+}
+
+.dominado-label {
+    color: #6f42c1;
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 10px 0;
+    display: inline-block;
+}
+
+/* --- Notificação --- */
+.notificacao {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    z-index: 9999;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    animation: notifEntrada 0.4s ease;
+}
+
+.notif-sucesso {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 5px solid #28a745;
+}
+
+.notif-erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 5px solid #dc3545;
+}
+
+.notif-saindo {
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.4s ease;
+}
+
+@keyframes notifEntrada {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 /* --- Aba Sobre --- */
@@ -190,6 +443,15 @@ h2 {
     margin: 20px 0 10px;
 }
 
+/* --- Dica do Especialista --- */
+#dica-especialista {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid #ffc107;
+    transition: background-color 0.3s;
+}
+
 /* --- Rodapé --- */
 footer {
     background-color: #222;
@@ -199,47 +461,35 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-}/* --- Ajuste Fino dos Cards (Minhas Matérias) --- */
-.card-materia {
-    background: white;
-    border-left: 6px solid #007bff;
-    padding: 18px; /* Reduzi um pouco o preenchimento */
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
 }
 
-.card-materia small {
-    color: #007bff;
-    background: #e7f3ff;
-    padding: 3px 10px;
-    border-radius: 50px;
-    font-size: 0.7rem; /* Tamanho normal/pequeno para data */
-    font-weight: 700;
-    margin-bottom: 10px;
-}
+/* --- Responsivo --- */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 1.4rem;
+    }
 
-.card-materia h3 {
-    color: #222;
-    font-size: 1.1rem; /* Tamanho normal para o nome da matéria */
-    margin: 5px 0;
-    text-transform: uppercase;
-}
+    nav ul {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
 
-.card-materia h4 {
-    color: #444;
-    font-size: 0.95rem; /* Tamanho padrão para o título */
-    margin-bottom: 10px;
-    font-weight: 600;
-}
+    section {
+        padding: 20px;
+    }
 
-.card-materia p {
-    color: #555;
-    background: #fdfdfd;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #eee;
-    font-size: 0.9rem; /* Tamanho confortável para leitura */
-    line-height: 1.4;
-    white-space: pre-wrap;
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .card-acoes {
+        flex-direction: column;
+    }
+
+    .btn-revisao, .btn-deletar {
+        width: 100%;
+        text-align: center;
+    }
 }

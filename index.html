@@ -43,7 +43,13 @@
 
     <section id="aba-lista" style="display: none;">
         <h2>Minhas Matérias Salvas</h2>
-        <p>Ordenadas do estudo mais recente para o mais antigo:</p>
+        <p>Acompanhe o status de cada conteúdo pela Curva de Esquecimento:</p>
+        <div class="legenda-cores">
+            <span class="legenda-item"><span class="legenda-cor" style="background:#28a745"></span> Em dia</span>
+            <span class="legenda-item"><span class="legenda-cor" style="background:#ffc107"></span> Atenção</span>
+            <span class="legenda-item"><span class="legenda-cor" style="background:#dc3545"></span> Revisar agora</span>
+            <span class="legenda-item"><span class="legenda-cor" style="background:#6f42c1"></span> Dominado</span>
+        </div>
         <div id="lista-materias"></div>
     </section>
 
@@ -52,11 +58,26 @@
         <p>O <strong>Simulador de Esquecimento "A"</strong> é o seu diário inteligente de estudos.</p>
         
         <div class="sobre-box">
-            <h3>🎯 O Propósito</h3>
+            <h3>O Propósito</h3>
             <p>Este site foi criado para ajudar você a manter o controle sobre o que aprende. Muitas vezes estudamos algo e esquecemos em poucos dias; aqui, você registra os pontos principais para saber exatamente o que revisitar.</p>
             
-            <h3>📅 Organização por Tempo</h3>
-            <p>O sistema organiza automaticamente suas matérias das mais recentes para as mais antigas. Assim, você sempre terá no topo da lista o que acabou de estudar, facilitando a revisão rápida no dia seguinte.</p>
+            <h3>A Curva de Ebbinghaus</h3>
+            <p>O sistema utiliza a <strong>Curva de Esquecimento</strong> do psicólogo Hermann Ebbinghaus para calcular automaticamente quando você deve revisar cada conteúdo. Os intervalos são:</p>
+            <ul style="margin: 10px 0 10px 20px;">
+                <li><strong>24 horas</strong> após o estudo (1ª revisão)</li>
+                <li><strong>7 dias</strong> após a 1ª revisão (2ª revisão)</li>
+                <li><strong>30 dias</strong> após a 2ª revisão (3ª revisão)</li>
+            </ul>
+            <p>Ao completar as 3 revisões, o conteúdo é considerado <strong>dominado</strong>!</p>
+
+            <h3>Como funciona o Semáforo</h3>
+            <p>Cada matéria recebe uma cor de status que atualiza automaticamente:</p>
+            <ul style="margin: 10px 0 10px 20px;">
+                <li><strong style="color:#28a745;">Verde</strong> — Conteúdo estudado recentemente, dentro do prazo.</li>
+                <li><strong style="color:#ffc107;">Amarelo</strong> — A revisão está se aproximando.</li>
+                <li><strong style="color:#dc3545;">Vermelho</strong> — Hora de revisar! O prazo já passou.</li>
+                <li><strong style="color:#6f42c1;">Roxo</strong> — Parabéns! Conteúdo dominado.</li>
+            </ul>
         </div>
         
         <p style="margin-top:20px; text-align:center;">Criado por Ludmilla e Lucas - 2026</p>
@@ -65,8 +86,8 @@
     <hr>
 
     <article id="dica-especialista">
-        <h3>💡 Dica do Especialista</h3>
-        <p>Se você revisar o conteúdo em 24 horas, você recupera quase 100% do que aprendeu!</p>
+        <h3>Dica do Especialista</h3>
+        <p>Se você revisar o conteúdo em <strong>24 horas</strong>, você recupera quase 100% do que aprendeu! Depois, revise em <strong>7 dias</strong> e <strong>30 dias</strong> para fixar de vez.</p>
     </article>
 </main>
 
