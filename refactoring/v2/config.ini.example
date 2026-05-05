@@ -1,0 +1,6 @@
+[database]
+driver = sqlite
+path = database.sqlite
+
+[app]
+debug = false
