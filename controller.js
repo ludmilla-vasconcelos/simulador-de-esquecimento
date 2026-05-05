@@ -223,7 +223,8 @@ window.addEventListener("load", async () => {
             if (!materia) return;
 
             materia.cicloAtual = (materia.cicloAtual || 0) + 1;
-            materia.dataReferencia = new Date().toISOString().split("T")[0];
+            var hoje = new Date();
+            materia.dataReferencia = hoje.getFullYear() + "-" + String(hoje.getMonth() + 1).padStart(2, "0") + "-" + String(hoje.getDate()).padStart(2, "0");
             if (!materia.revisoes) materia.revisoes = [];
             materia.revisoes.push({
                 data: new Date().toISOString(),
